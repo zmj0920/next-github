@@ -1,5 +1,17 @@
-import App from 'next/app'
+import App, { Container } from 'next/app'
 
 import 'antd/dist/antd.css'
 
-export default App
+class Myapp extends App {
+    render() {
+        const { Component } = this.props
+        console.log(Component)
+        return (
+            < Container >
+                <Component />
+            </Container >
+        )
+    }
+}
+
+export default Myapp
