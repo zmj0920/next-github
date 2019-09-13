@@ -47,3 +47,7 @@ npm run dev
 ├── README.md            项目说明文件
 ├── server.js            服务端文件
 ```
+
+
+## ssr 流程
+![ssr渲染流程](./static/img/16ca8dc70d421934.png)
