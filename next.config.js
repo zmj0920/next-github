@@ -62,7 +62,5 @@ if (typeof require !== 'undefined') {
 
 // 虽然next-css看起来是一个处理样式的插件，实则它是接收的一个对象，可以把传入的其他非css相关的webpack配置一并处理。
 // 建议不要直接写一个新的webpack配置，因为next-css里面的webpack的配置是非常全面的，如果被覆盖了，可能会导致报错。
-module.exports = withCss({
-        // 这里配置了之后才会生效
-})
+module.exports = withCss(configs)
 
