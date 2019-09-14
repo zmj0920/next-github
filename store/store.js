@@ -5,6 +5,34 @@ import { ADD, UPDATE_USERNAME } from './actionTypes'
 import { add } from './actionCreatores'
 import reducer from "./reducer";
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // const initialState = {
 //     count: 0
 // }
@@ -40,20 +68,23 @@ import reducer from "./reducer";
 // })
 
 
-const store = createStore(reducer,composeWithDevTools(applyMiddleware(thunk)))
+// const store = createStore(reducer,composeWithDevTools(applyMiddleware(thunk)))
+// console.log(store.getState())
+// store.dispatch({ type: ADD })
+// store.dispatch(add(3))
+// store.dispatch({ type: 'UPDATE_USERNAME', name: 'Lilei' })
+// console.log(store.getState())
+// console.log(store)
 
 
-
-console.log(store.getState())
-
-store.dispatch({ type: ADD })
-store.dispatch(add(3))
-
-store.dispatch({ type: 'UPDATE_USERNAME', name: 'Lilei' })
-
-
-console.log(store.getState())
-console.log(store)
-export default store
+export default function initializeStore(state) {
+    const store = createStore(
+        reducer,
+      {...state },
+      composeWithDevTools(applyMiddleware(thunk)),
+    )
+    return store
+  }
+  
 
 

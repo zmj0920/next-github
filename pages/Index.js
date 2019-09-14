@@ -1,8 +1,7 @@
 import Head from 'next/head'
-import {connect} from 'react-redux'
-
-
-const Index = ({counter,username,add,rename}) => {
+import { connect } from 'react-redux'
+import { ADD, UPDATE_USERNAME } from '../store/actionTypes'
+const Index = ({ counter, username, add, rename }) => {
   return (
     <>
       <Head>
@@ -11,21 +10,21 @@ const Index = ({counter,username,add,rename}) => {
       <div>
         <div>Count:{counter}</div>
         <div>UserName:{username}</div>
-        <input  value={username} onChange={(e)=>rename(e.target.value)} />
-        <button onClick={()=>add(counter)}>渣渣新</button>
+        <input value={username} onChange={(e) => rename(e.target.value)} />
+        <button onClick={() => add(counter)}>渣渣新</button>
       </div>
     </>
   )
 }
 
-export default connect(function mapStateToProps(state){
+export default connect(function mapStateToProps(state) {
   return {
-    counter:state.counter.count,
-    username:state.user.username
+    counter: state.counter.count,
+    username: state.user.username
   }
-},function mapDispatchToProps(dispatch){
+}, function mapDispatchToProps(dispatch) {
   return {
-    add:(num)=>dispatch({type:'ADD',num}),
-    rename:(name)=>dispatch({type:'UPDATE_USERNAME',name})
+    add: (num) => dispatch({ type: ADD, num }),
+    rename: (name) => dispatch({ type: UPDATE_USERNAME, name })
   }
 })(Index)
