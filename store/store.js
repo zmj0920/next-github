@@ -78,13 +78,13 @@ import reducer from "./reducer";
 
 
 export default function initializeStore(state) {
-    const store = createStore(
-        reducer,
-      {...state },
-      composeWithDevTools(applyMiddleware(thunk)),
-    )
-    return store
-  }
-  
+  const store = createStore(
+    reducer,
+    Object.assign({}, { ...state }),
+    composeWithDevTools(applyMiddleware(thunk)),
+  )
+  return store
+}
+
 
 
