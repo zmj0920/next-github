@@ -1,26 +1,31 @@
 import Head from 'next/head'
-const Index = () => {
+import {connect} from 'react-redux'
+
+
+const Index = ({counter,username,add,rename}) => {
   return (
     <>
       <Head>
         <title>首页</title>
       </Head>
       <div>
-        <span>index</span>
+        <div>Count:{counter}</div>
+        <div>UserName:{username}</div>
+        <input  value={username} onChange={(e)=>rename(e.target.value)} />
+        <button onClick={()=>add(counter)}>渣渣新</button>
       </div>
-      <style jsx>{`
-     a {
-        color:red
-       }
-   `}</style>
-
-      <style jsx global>{`
-   body {
-     background: red
-   }
- `}</style>
     </>
   )
 }
 
-export default Index
+export default connect(function mapStateToProps(state){
+  return {
+    counter:state.counter.count,
+    username:state.user.username
+  }
+},function mapDispatchToProps(dispatch){
+  return {
+    add:(num)=>dispatch({type:'ADD',num}),
+    rename:(name)=>dispatch({type:'UPDATE_USERNAME',name})
+  }
+})(Index)

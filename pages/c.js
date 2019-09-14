@@ -42,3 +42,35 @@ const Index = () => {
 }
 
 export default Index
+
+
+import Head from 'next/head'
+import {connect} from 'react-redux'
+
+
+
+const Index = () => {
+  return (
+    <>
+      <Head>
+        <title>首页</title>
+      </Head>
+      <div>
+        <span>index</span>
+      </div>
+      <style jsx>{`
+     a {
+        color:red
+       }
+   `}</style>
+
+      <style jsx global>{`
+   body {
+     background: red
+   }
+ `}</style>
+    </>
+  )
+}
+
+export default connect()(Index)
