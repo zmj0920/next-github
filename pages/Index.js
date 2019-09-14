@@ -17,6 +17,8 @@ const Index = ({ counter, username, add, rename }) => {
   )
 }
 
+
+
 export default connect(function mapStateToProps(state) {
   return {
     counter: state.counter.count,

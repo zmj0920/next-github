@@ -6,7 +6,8 @@ import Layout from '../components/Layout'
 import withRedux from '../lib/with-redux'
 
 class Myapp extends App {
-    static async getInitialProps({ Component, ctx }) {
+    static async getInitialProps(ctx) {
+        const {Component} = ctx
         let pageProps = {}
         if (Component.getInitialProps) {
             pageProps = await Component.getInitialProps(ctx)
