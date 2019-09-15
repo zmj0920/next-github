@@ -41,6 +41,9 @@ npm run dev
 │   └── _app.js          自定义 app配置
 │   └── _document.js     自定义 document 配置
 │   └── index.js         首页
+├── server               服务端文件
+│   └── auth.js          github auth 授权
+│   └── session-store.js 使用redis缓存store 
 ├── static               静态资源
 ├── test                 测试文件 
 ├── babelrc              babel 编译配置
