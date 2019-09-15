@@ -1,11 +1,19 @@
+import { useEffect } from 'react'
+import axios from 'axios'
 import Head from 'next/head'
 import { connect } from 'react-redux'
 import { ADD, UPDATE_USERNAME } from '../store/actionTypes'
 
 import getCofnig from 'next/config'
-const {  publicRuntimeConfig } = getCofnig()
+const { publicRuntimeConfig } = getCofnig()
 
 const Index = ({ counter, username, add, rename }) => {
+
+  useEffect(() => {
+    axios.get('/api/user/info').then(res => {
+      console.log(res)
+    })
+  },[])
 
 
   return (

@@ -7,8 +7,8 @@ const initialState = {
 const userinitialState = {
     username: 'zhazhaxin'
 }
-export  const  countreducer = (state = initialState, action)=> {
-    console.log(state, action)
+export const countreducer = (state = initialState, action) => {
+    // console.log(state, action)
     switch (action.type) {
         case ADD:
             return { count: state.count + (action.num | 1) }
@@ -17,7 +17,7 @@ export  const  countreducer = (state = initialState, action)=> {
     }
 }
 
-export   const userReducers=(state = userinitialState, action) => {
+export const userReducers = (state = userinitialState, action) => {
     switch (action.type) {
         case UPDATE_USERNAME:
             return {
