@@ -11,6 +11,8 @@
 
 > 中文官网：https://nextjs.frontendx.cn
 
+> API: https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/
+
 `当使用 React 开发系统的时候，常常需要配置很多繁琐的参数，如 Webpack 配置、Router 配置和服务器配置等。
 如果需要做 SEO，要考虑的事情就更多了，怎么让服务端渲染和客户端渲染保持一致是一件很麻烦的事情，
 需要引入很多第三方库。针对这些问题，Next.js 提供了一个很好的解决方案，使开发人员可以将精力放在业务上，
@@ -34,6 +36,7 @@ npm run dev
 ├── components           非页面级共用组件
 │   └── Layout.jsx       路由配置文件
 ├── lib                  一些通用的js
+│   └── with-redux.js    继承redux
 ├── pages                页面级组件 会被解析成路由
 │   └── _app.js          自定义 app配置
 │   └── _document.js     自定义 document 配置

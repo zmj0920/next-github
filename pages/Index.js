@@ -1,7 +1,13 @@
 import Head from 'next/head'
 import { connect } from 'react-redux'
 import { ADD, UPDATE_USERNAME } from '../store/actionTypes'
+
+import getCofnig from 'next/config'
+const {  publicRuntimeConfig } = getCofnig()
+
 const Index = ({ counter, username, add, rename }) => {
+
+
   return (
     <>
       <Head>
@@ -12,9 +18,12 @@ const Index = ({ counter, username, add, rename }) => {
         <div>UserName:{username}</div>
         <input value={username} onChange={(e) => rename(e.target.value)} />
         <button onClick={() => add(counter)}>渣渣新</button>
+        <a href={publicRuntimeConfig.OAUTH_URL}> 登录</a>
       </div>
     </>
   )
+
+
 }
 
 

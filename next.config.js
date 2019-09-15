@@ -1,6 +1,6 @@
 const withCss = require('@zeit/next-css')
-
-
+const config = require('./config')
+const { GITHUB_OAUTH_URL } = config
 // 配置说明
 const configs = {
     // 编译文件的输出目录
@@ -48,6 +48,8 @@ const configs = {
     },
     // 在服务端渲染和客户端渲染都可获取的配置
     publicRuntimeConfig: {
+        GITHUB_OAUTH_URL,
+        OAUTH_URL: config.OAUTH_URL,
         staticFolder: '/static',
     },
     // 上面这两个配置在组件里使用方式如下：
