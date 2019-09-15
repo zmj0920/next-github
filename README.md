@@ -45,6 +45,7 @@ npm run dev
 │   └── auth.js          github auth 授权
 │   └── session-store.js 使用redis缓存store 
 ├── static               静态资源
+├── store                redux使用相关文件
 ├── test                 测试文件 
 ├── babelrc              babel 编译配置
 ├── gitignore            git不需要上传文件配置
