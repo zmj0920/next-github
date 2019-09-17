@@ -1,11 +1,8 @@
 import { useState, useCallback, useMemo } from 'react'
 import { Layout, Icon, Input, Avatar, Tooltip, Dropdown, Menu, Button } from 'antd';
-
 import Container from './Container'
 import { connect } from 'react-redux'
 import getCofnig from 'next/config'
-import { format } from 'url';
-import renderEmpty from 'antd/lib/config-provider/renderEmpty';
 const { publicRuntimeConfig } = getCofnig()
 const { Header, Content, Footer } = Layout;
 //图标样式
