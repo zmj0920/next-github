@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react'
-import { Layout, Icon, Input, Avatar, Tooltip, Dropdown, Menu } from 'antd';
+import { Layout, Icon, Input, Avatar, Tooltip, Dropdown, Menu, Button } from 'antd';
 
 import Container from './Container'
 import { connect } from 'react-redux'
@@ -32,14 +32,18 @@ function AppLayout({ children, user }) {
     const handleOnSeach = useCallback(() => {
 
     }, [])
-    const userDorpDown = (
+     //登出
+    const handleLogout = () => {
+        //dispatch(logout())
+    }
+    const UserDropDown = (
         <Menu>
             <Menu.Item>
-                <a href="javascript:viod(0)">
-                   登出
-                </a>
+                <Button onClick={handleLogout} type="link">登出</Button>
             </Menu.Item>
-        </Menu>)
+        </Menu>
+    )
+
     return (
         <Layout>
             <Header>
@@ -61,7 +65,7 @@ function AppLayout({ children, user }) {
                         <div className="user">
                             {
                                 user && user.id ? (
-                                    <Dropdown overlay={userDorpDown}>
+                                    <Dropdown overlay={UserDropDown}>
                                         <a href="/">
                                             <Avatar size={40} src={user.avatar_url} />
                                         </a>
