@@ -166,6 +166,7 @@ app.prepare().then(() => {
     server.use(router.routes())
 
     server.use(async (ctx) => {
+        
         // req里获取session
         ctx.req.session = ctx.session
         await handle(ctx.req, ctx.res)

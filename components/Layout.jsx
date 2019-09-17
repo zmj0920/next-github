@@ -1,7 +1,13 @@
 import { useState, useCallback, useMemo } from 'react'
-import { Layout, Icon, Input, Avatar } from 'antd';
-const { Header, Content, Footer } = Layout;
+import { Layout, Icon, Input, Avatar, Tooltip, Dropdown, Menu } from 'antd';
+
 import Container from './Container'
+import { connect } from 'react-redux'
+import getCofnig from 'next/config'
+import { format } from 'url';
+import renderEmpty from 'antd/lib/config-provider/renderEmpty';
+const { publicRuntimeConfig } = getCofnig()
+const { Header, Content, Footer } = Layout;
 //图标样式
 const githubIconStyle = {
     color: 'white',
@@ -15,7 +21,7 @@ const footerStyle = {
     textAlign: 'center'
 }
 
-export default ({ children }) => {
+function AppLayout({ children, user }) {
     const [search, setSeach] = useState('')
     //搜索事件
     const handleSearchChange = useCallback((event) => {
@@ -26,14 +32,18 @@ export default ({ children }) => {
     const handleOnSeach = useCallback(() => {
 
     }, [])
-
+    const userDorpDown = (
+        <Menu>
+            <Menu.Item>
+                <a href="javascript:viod(0)">
+                   登出
+                </a>
+            </Menu.Item>
+        </Menu>)
     return (
         <Layout>
             <Header>
                 <Container renderer={<div className="header-inner" />}>
-
-
-
                     <div className="header-left">
                         <div className="logo">
                             <Icon type="github" style={githubIconStyle} />
@@ -49,7 +59,22 @@ export default ({ children }) => {
                     </div>
                     <div className="header-right">
                         <div className="user">
-                            <Avatar size={40} icon="user" />
+                            {
+                                user && user.id ? (
+                                    <Dropdown overlay={userDorpDown}>
+                                        <a href="/">
+                                            <Avatar size={40} src={user.avatar_url} />
+                                        </a>
+                                    </Dropdown>
+                                ) : (
+                                        <Tooltip title="点击登录">
+                                            <a href={publicRuntimeConfig.OAUTH_URL}>
+                                                <Avatar size={40} icon="user" />
+                                            </a>
+                                        </Tooltip>
+                                    )
+                            }
+
                         </div>
                     </div>
 
@@ -89,3 +114,11 @@ export default ({ children }) => {
         </Layout>
     )
 }
+
+//connect映射state
+
+export default connect(function mapState(state) {
+    return {
+        user: state.user
+    }
+})(AppLayout)
