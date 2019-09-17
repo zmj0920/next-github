@@ -1,7 +1,7 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useMemo } from 'react'
 import { Layout, Icon, Input, Avatar } from 'antd';
 const { Header, Content, Footer } = Layout;
-
+import Container from './Container'
 //图标样式
 const githubIconStyle = {
     color: 'white',
@@ -10,7 +10,7 @@ const githubIconStyle = {
     paddingTop: 10,
     marginRight: 20
 }
-
+//底部样式
 const footerStyle = {
     textAlign: 'center'
 }
@@ -30,7 +30,10 @@ export default ({ children }) => {
     return (
         <Layout>
             <Header>
-                <div className="header-inner">
+                <Container renderer={<div className="header-inner" />}>
+
+
+
                     <div className="header-left">
                         <div className="logo">
                             <Icon type="github" style={githubIconStyle} />
@@ -49,10 +52,14 @@ export default ({ children }) => {
                             <Avatar size={40} icon="user" />
                         </div>
                     </div>
-                </div>
 
+                </Container>
             </Header>
-            <Content>{children}</Content>
+            <Content>
+                <Container>
+                    index {children}
+                </Container>
+            </Content>
             <Footer style={footerStyle}>
                 Develop by   渣渣新 @
                 <a href="http://www.521em.cn">我是渣渣新</a>
@@ -70,10 +77,13 @@ export default ({ children }) => {
             <style jsx global>{`
               #__next{
                   height:100%;
-
               }
               .ant-layout{
                 height:100%;
+              }
+              .ant-layout-header{
+                padding-left:0;
+                padding-right:0;
               }
             `}</style>
         </Layout>
