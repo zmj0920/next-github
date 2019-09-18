@@ -50,15 +50,15 @@ module.exports = (server) => {
     })
 
     // 登出逻辑
-    // server.use(async (ctx, next) => {
-    //     const { path, method } = ctx
-    //     if (path === '/logout' && method === 'POST') {
-    //         ctx.session = null
-    //         ctx.body = 'logout success'
-    //     } else {
-    //         await next()
-    //     }
-    // })
+    server.use(async (ctx, next) => {
+        const { path, method } = ctx
+        if (path === '/logout' && method === 'POST') {
+            ctx.session = null
+            ctx.body = 'logout success'
+        } else {
+            await next()
+        }
+    })
 
     // 在进行auth之前 记录请求时的页面url
     // server.use(async (ctx, next) => {

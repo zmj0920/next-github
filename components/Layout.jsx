@@ -1,8 +1,9 @@
-import { useState, useCallback, useMemo } from 'react'
+import { useState, useCallback } from 'react'
 import { Layout, Icon, Input, Avatar, Tooltip, Dropdown, Menu, Button } from 'antd';
 import Container from './Container'
 import { connect } from 'react-redux'
 import getCofnig from 'next/config'
+import  {logout}  from '../store/reducer'
 const { publicRuntimeConfig } = getCofnig()
 const { Header, Content, Footer } = Layout;
 //图标样式
@@ -18,7 +19,7 @@ const footerStyle = {
     textAlign: 'center'
 }
 
-function AppLayout({ children, user }) {
+function AppLayout({ children, user, logout }) {
     const [search, setSeach] = useState('')
     //搜索事件
     const handleSearchChange = useCallback((event) => {
@@ -29,10 +30,10 @@ function AppLayout({ children, user }) {
     const handleOnSeach = useCallback(() => {
 
     }, [])
-     //登出
-    const handleLogout = () => {
-        //dispatch(logout())
-    }
+    //登出
+    const handleLogout = useCallback(() => {
+        logout();
+    }, [])
     const UserDropDown = (
         <Menu>
             <Menu.Item>
@@ -121,5 +122,9 @@ function AppLayout({ children, user }) {
 export default connect(function mapState(state) {
     return {
         user: state.user
+    }
+}, function mapReducer(dispatch) {
+    return {
+        logout: () => dispatch(logout())
     }
 })(AppLayout)

@@ -1,6 +1,5 @@
 import App, { Container } from 'next/app'
 import { Provider } from 'react-redux'
-// import store from '../store/store'
 import 'antd/dist/antd.css'
 import Layout from '../components/Layout'
 import withRedux from '../lib/with-redux'
