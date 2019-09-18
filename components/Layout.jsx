@@ -3,8 +3,9 @@ import { Layout, Icon, Input, Avatar, Tooltip, Dropdown, Menu, Button } from 'an
 import Container from './Container'
 import { connect, useSelector, useDispatch } from 'react-redux'
 import getCofnig from 'next/config'
-import  {logout}  from '../store/reducer'
-const { publicRuntimeConfig } = getCofnig()
+import { logout } from '../store/reducer'
+import { withRouter } from 'next/router'
+// const { publicRuntimeConfig } = getCofnig()
 const { Header, Content, Footer } = Layout;
 //图标样式
 const githubIconStyle = {
@@ -19,10 +20,10 @@ const footerStyle = {
     textAlign: 'center'
 }
 
-function AppLayout({ children, user }) {
+function AppLayout({ children, user, router }) {
     const [search, setSeach] = useState('')
     //useSelector()，而不用担心重复渲染的情况
-   // const user = useSelector((store) => store.user)
+    // const user = useSelector((store) => store.user)
     const dispatch = useDispatch()
 
     //搜索事件
@@ -36,7 +37,7 @@ function AppLayout({ children, user }) {
     }, [])
     //登出
     const handleLogout = useCallback(() => {
-       dispatch(logout())
+        dispatch(logout())
     }, [dispatch])
 
     const UserDropDown = (
@@ -75,7 +76,7 @@ function AppLayout({ children, user }) {
                                     </Dropdown>
                                 ) : (
                                         <Tooltip title="点击登录">
-                                            <a href={publicRuntimeConfig.OAUTH_URL}>
+                                            <a href={`/prepare-auth?url=${router.asPath}`}>
                                                 <Avatar size={40} icon="user" />
                                             </a>
                                         </Tooltip>
@@ -129,4 +130,4 @@ export default connect(function mapState(state) {
     return {
         user: state.user
     }
-})(AppLayout)
+})(withRouter(AppLayout))

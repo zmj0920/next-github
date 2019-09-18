@@ -61,14 +61,16 @@ module.exports = (server) => {
     })
 
     // 在进行auth之前 记录请求时的页面url
-    // server.use(async (ctx, next) => {
-    //     const { path, method } = ctx
-    //     if (path === '/prepare-auth' && method === 'GET') {
-    //         const { url } = ctx.query
-    //         ctx.session.urlBeforeOAuth = url
-    //         ctx.redirect(config.OAUTH_URL)
-    //     } else {
-    //         await next()
-    //     }
-    // })
+    server.use(async (ctx, next) => {
+        const { path, method } = ctx
+        if (path === '/prepare-auth' && method === 'GET') {
+            const { url } = ctx.query
+            //存储 url
+            ctx.session.urlBeforeOAuth = url
+            //跳转授权重定向
+            ctx.redirect(config.OAUTH_URL)
+        } else {
+            await next()
+        }
+    })
 }
