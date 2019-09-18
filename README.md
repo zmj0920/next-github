@@ -56,5 +56,45 @@ npm run dev
 ```
 
 
+
+对现有模式的影响
+最新的redux将不需要使用connect来连接组件，而是在组件中直接使用redux提供的hooks。这对于使用redux的大型应用来说是一种非常好的提升，因为现在可以实际创建自定义的可重用hooks，而无需额外的container组件。到目前为止，我们无法创建一个hooks来从redux中读取state或者dispatch actions。因此，借助自定义hooks封装redux相关的逻辑，react将不需要直接引用redux。
+
+并且redux提供的hooks让我们不再需要使用mapStateToProps，mapDispatchToProps和connect来维护单独的container组件和UI组件，可以立即在function组件内部读取redux中的state。此外，还可以将任何现有的自定义hooks与redux集成，而不是将通过hooks创建的state，作为参数传递给其他hooks，相当于把这块的逻辑完全抽取出去了，让我们编写的组件更纯净。
+
+
+```
+// 以前
+import React from 'react';
+import { connect } from 'react-redux';
+ 
+const Component = props => <div title={props.title}>{props.content}</div>;
+ 
+export default connect(state => ({
+  title: state.title, 
+  content: state.content
+}))(Component)
+
+```
+
+```
+// 使用redux hooks
+import React from 'react';
+import { useSelector } from 'react-redux';
+ 
+const Component = props => {
+  const { title, content } = useSelector(state => ({
+      title: state.title, 
+      content: state.content
+  }));
+  
+  return <div title={title}>{content}</div>;
+
+```
+
+
+
+
+
 ## ssr 流程
 ![ssr渲染流程](./static/img/16ca8dc70d421934.png)

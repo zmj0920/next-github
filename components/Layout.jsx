@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import { Layout, Icon, Input, Avatar, Tooltip, Dropdown, Menu, Button } from 'antd';
 import Container from './Container'
-import { connect } from 'react-redux'
+import { connect, useSelector, useDispatch } from 'react-redux'
 import getCofnig from 'next/config'
 import  {logout}  from '../store/reducer'
 const { publicRuntimeConfig } = getCofnig()
@@ -19,8 +19,12 @@ const footerStyle = {
     textAlign: 'center'
 }
 
-function AppLayout({ children, user, logout }) {
+function AppLayout({ children, user }) {
     const [search, setSeach] = useState('')
+    //useSelector()，而不用担心重复渲染的情况
+   // const user = useSelector((store) => store.user)
+    const dispatch = useDispatch()
+
     //搜索事件
     const handleSearchChange = useCallback((event) => {
         setSeach(event.target.value)
@@ -32,8 +36,9 @@ function AppLayout({ children, user, logout }) {
     }, [])
     //登出
     const handleLogout = useCallback(() => {
-        logout();
-    }, [])
+       dispatch(logout())
+    }, [dispatch])
+
     const UserDropDown = (
         <Menu>
             <Menu.Item>
@@ -117,14 +122,11 @@ function AppLayout({ children, user, logout }) {
     )
 }
 
+// export default  AppLayout
 //connect映射state
 
 export default connect(function mapState(state) {
     return {
         user: state.user
-    }
-}, function mapReducer(dispatch) {
-    return {
-        logout: () => dispatch(logout())
     }
 })(AppLayout)
