@@ -6,7 +6,7 @@ import withRedux from '../lib/with-redux'
 import PageLoading from '../components/PageLoading'
 import Router from 'next/router'
 import Link from 'next/link'
-import axios from 'axios'
+
 class Myapp extends App {
 
     // App组件的getInitialProps比较特殊
@@ -48,10 +48,6 @@ class Myapp extends App {
         Router.events.on('routeChangeStart', this.startLoading)
         Router.events.on('routeChangeComplete', this.stopLoading)
         Router.events.on('routeChangeError', this.stopLoading)
-        axios.get('/github/search/repositories?q=react')
-        .then(resp=>{
-            console.log(resp)
-        })
     }
 
     componentWillUnmount() {

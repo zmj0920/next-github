@@ -5,6 +5,7 @@ import { connect, useSelector, useDispatch } from 'react-redux'
 import getCofnig from 'next/config'
 import { logout } from '../store/reducer'
 import { withRouter } from 'next/router'
+import Link from 'next/link'
 // const { publicRuntimeConfig } = getCofnig()
 const { Header, Content, Footer } = Layout;
 //图标样式
@@ -21,7 +22,10 @@ const footerStyle = {
 }
 
 function AppLayout({ children, user, router }) {
-    const [search, setSeach] = useState('')
+    //  const {query} = router.query.router
+    //  const {query:{query}}=router
+    const { query: { query = '' } = {} } = router
+    const [search, setSeach] = useState(query)
     //useSelector()，而不用担心重复渲染的情况
     // const user = useSelector((store) => store.user)
     const dispatch = useDispatch()
@@ -33,8 +37,8 @@ function AppLayout({ children, user, router }) {
 
     //搜索按钮触发事件
     const handleOnSeach = useCallback(() => {
-
-    }, [])
+        router.push(`/search?query=${search}`)
+    }, [search])
     //登出
     const handleLogout = useCallback(() => {
         dispatch(logout())
@@ -54,7 +58,9 @@ function AppLayout({ children, user, router }) {
                 <Container renderer={<div className="header-inner" />}>
                     <div className="header-left">
                         <div className="logo">
-                            <Icon type="github" style={githubIconStyle} />
+                            <Link href="/">
+                                <Icon type="github" style={githubIconStyle} />
+                            </Link>
                         </div>
                         <div>
                             <Input.Search
@@ -112,11 +118,14 @@ function AppLayout({ children, user, router }) {
                   height:100%;
               }
               .ant-layout{
-                height:100%;
+                min-height:100%;
               }
               .ant-layout-header{
                 padding-left:0;
                 padding-right:0;
+              }
+              .ant-layout-content {
+                background: #fff;
               }
             `}</style>
         </Layout>
