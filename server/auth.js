@@ -67,7 +67,7 @@ module.exports = (server) => {
             const { url } = ctx.query
             //存储 url
             ctx.session.urlBeforeOAuth = url
-            //跳转授权重定向
+            //跳转授权重定向 维持OAuth之前得页面访问
             ctx.redirect(config.OAUTH_URL)
         } else {
             await next()
