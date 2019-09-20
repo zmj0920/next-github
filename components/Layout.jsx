@@ -96,7 +96,7 @@ function AppLayout({ children, user, router }) {
             </Header>
             <Content>
                 <Container>
-                    index {children}
+                    {children}
                 </Container>
             </Content>
             <Footer style={footerStyle}>

@@ -63,10 +63,7 @@ class Myapp extends App {
             <Container>
                 <Provider store={reduxStore}>
                     <Layout>
-                       <Link href="/"><a>跳转</a></Link>
-                       <Link href="/detail"><a>detail</a></Link>
                         {this.state.loading ? <PageLoading /> : null}
-
                         {/* 把pageProps解构后传递给组件 */}
                         <Component {...pageProps} />
                     </Layout>
