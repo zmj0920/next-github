@@ -1,14 +1,26 @@
 import Head from 'next/head'
 import { Button, Icon, Tabs } from 'antd'
 import { request } from '../lib/api'
+import Router, { withRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import getConfig from 'next/config'
-
+import Repo from '../components/Repo'
 const { publicRuntimeConfig } = getConfig()
 
-const Index = ({ userRepos, userStarredRepos }) => {
+const Index = ({ userRepos, userStarredRepos, router }) => {
 
     const user = useSelector(store => store.user)
+
+
+
+    //tabs切换
+
+    const tabKey = router.query.key || '1'
+
+    const handleTabChange = (activeKey) => {
+        Router.push(`/?key=${activeKey}`)
+    }
+
 
     if (!user || !user.id) {
         return (
@@ -54,7 +66,14 @@ const Index = ({ userRepos, userStarredRepos }) => {
                     </p>
                 </div>
                 <div className="user-repos">
-                    <p>User Repos</p>
+                    <Tabs activeKey={tabKey} animated={false} onChange={handleTabChange}>
+                        <Tabs.TabPane tab="你的仓库" key="1">
+                            {userRepos.map(repo => <Repo repo={repo} />)}
+                        </Tabs.TabPane>
+                        <Tabs.TabPane tab="你关注的仓库" key="2">
+                            {userStarredRepos.map(repo => <Repo repo={repo} />)}
+                        </Tabs.TabPane>
+                    </Tabs>
                 </div>
                 <style jsx>{`
                 .root{
@@ -131,5 +150,5 @@ Index.getInitialProps = async ({ ctx, reduxStore }) => {
         userStarredRepos,
     }
 }
-export default Index
+export default withRouter(Index)
 
