@@ -5,14 +5,14 @@ import Router, { withRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import getConfig from 'next/config'
 import Repo from '../components/Repo'
+import clientCache from '../lib/client-cache'
+
+const { cache, useCache } = clientCache()
+
 const { publicRuntimeConfig } = getConfig()
 
 const Index = ({ userRepos, userStarredRepos, router }) => {
-
     const user = useSelector(store => store.user)
-
-
-
     //tabs切换
 
     const tabKey = router.query.key || '1'
@@ -20,7 +20,10 @@ const Index = ({ userRepos, userStarredRepos, router }) => {
     const handleTabChange = (activeKey) => {
         Router.push(`/?key=${activeKey}`)
     }
-
+    useCache('cache', {
+        userRepos,
+        userStarredRepos,
+    })
 
     if (!user || !user.id) {
         return (
@@ -68,10 +71,10 @@ const Index = ({ userRepos, userStarredRepos, router }) => {
                 <div className="user-repos">
                     <Tabs activeKey={tabKey} animated={false} onChange={handleTabChange}>
                         <Tabs.TabPane tab="你的仓库" key="1">
-                            {userRepos.map(repo => <Repo repo={repo} />)}
+                            {userRepos.map(repo => <Repo key={repo.id} repo={repo} />)}
                         </Tabs.TabPane>
                         <Tabs.TabPane tab="你关注的仓库" key="2">
-                            {userStarredRepos.map(repo => <Repo repo={repo} />)}
+                            {userStarredRepos.map(repo => <Repo key={repo.id} repo={repo} />)}
                         </Tabs.TabPane>
                     </Tabs>
                 </div>
@@ -122,7 +125,7 @@ const Index = ({ userRepos, userStarredRepos, router }) => {
     )
 }
 
-Index.getInitialProps = async ({ ctx, reduxStore }) => {
+Index.getInitialProps = cache(async ({ ctx, reduxStore }) => {
     //判断用户是否登出
     const { user } = reduxStore.getState()
     if (!user || !user.id) {
@@ -149,6 +152,6 @@ Index.getInitialProps = async ({ ctx, reduxStore }) => {
         userRepos,
         userStarredRepos,
     }
-}
+})
 export default withRouter(Index)
 
