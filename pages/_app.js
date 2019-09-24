@@ -5,8 +5,6 @@ import Layout from '../components/Layout'
 import withRedux from '../lib/with-redux'
 import PageLoading from '../components/PageLoading'
 import Router from 'next/router'
-import Link from 'next/link'
-
 class Myapp extends App {
 
     // App组件的getInitialProps比较特殊

@@ -36,7 +36,7 @@ function AppLayout({ children, user, router }) {
     }, [setSeach])
 
     //搜索按钮触发事件
-    const handleOnSeach = useCallback(() => {
+    const handleOnSearch = useCallback(() => {
         router.push(`/search?query=${search}`)
     }, [search])
     //登出
@@ -59,7 +59,7 @@ function AppLayout({ children, user, router }) {
                     <div className="header-left">
                         <div className="logo">
                             <Link href="/">
-                                <Icon type="github" style={githubIconStyle} />
+                                <a>  <Icon type="github" style={githubIconStyle} /></a>
                             </Link>
                         </div>
                         <div>
@@ -67,7 +67,7 @@ function AppLayout({ children, user, router }) {
                                 value={search}
                                 onChange={handleSearchChange}
                                 placeholder="搜索仓库"
-                                onSearch={handleOnSeach}
+                                onSearch={handleOnSearch}
                             />
                         </div>
                     </div>
