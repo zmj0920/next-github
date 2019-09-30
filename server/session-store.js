@@ -11,7 +11,7 @@ class RedisSessionStore {
 
     // 获取redis中存储的session数据
     async get(sessionId) {
-        console.log(" get  session  "+sessionId)
+       // console.log(" get  session  "+sessionId)
         const id = getRedisSessionId(sessionId)
         // 对应命令行操作redis的get指令，获取value
         const data = await this.client.get(id)
@@ -28,7 +28,7 @@ class RedisSessionStore {
 
     // 在redis中存储session数据
     async set(sessionId, session, ttl /** 过期时间 */) {
-        console.log("set  session  "+sessionId)
+      //  console.log("set  session  "+sessionId)
         const id = getRedisSessionId(sessionId)
         let ttlSecond
         if (typeof ttl === 'number') {
@@ -52,7 +52,7 @@ class RedisSessionStore {
     // 从resid中删除某个session
     // 在koa中 设置ctx.session = null时，会调用这个方法
     async destroy(sessionId) {
-        console.log("destroy  session  "+sessionId)
+      //  console.log("destroy  session  "+sessionId)
         const id = getRedisSessionId(sessionId)
         await this.client.del(id)
     }
