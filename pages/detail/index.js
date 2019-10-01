@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import 'github-markdown-css'
 import WithRepoBasic from '../../components/WithRepoBasic'
 import { request } from '../../lib/api'
 import initCache from '../../lib/client-cache'

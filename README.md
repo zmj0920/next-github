@@ -58,13 +58,13 @@ npm run dev
 安装依赖
 
 ```
+    "@zeit/next-bundle-analyzer": "^0.1.2", //观察打包代码
     "@zeit/next-css": "^1.0.1", //支持css文件引入配置
     "antd": "^3.23.1",          // ui库使用
     "atob": "^2.1.2",           //对base64编码过的字符串进行解码
     "axios": "^0.19.0",         // 数据请求
     "babel-plugin-import": "^1.12.1",     //在编译过程中将 import 的写法自动转换为按需引入ui组件
     "github-markdown-css": "^3.0.1",      //  github-markdown 的样式美化
-    "highlight.js": "^9.15.10",           //使用highlight.js高亮代码
     "ioredis": "^4.14.0",                 //链接redis使用
     "koa": "^2.8.1",                      //koa框架
     "koa-body": "^4.1.1",                 
