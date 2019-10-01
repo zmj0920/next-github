@@ -40,7 +40,7 @@ export default (Comp, type = 'index') => {
                             {type === 'issues' ? (
                                 <span className="tab">Issues</span>
                             ) : (
-                                    <a title="issues" className="tab issues">Issues</a>
+                                    <a title="issues" className="tab issues"></a>
                                 )}
                         </Link>
                     </div>

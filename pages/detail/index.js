@@ -3,7 +3,10 @@ import WithRepoBasic from '../../components/WithRepoBasic'
 import { request } from '../../lib/api'
 import initCache from '../../lib/client-cache'
 import { genDetailCacheKeyStrate, genDetailCacheKey } from '../../lib/util'
-import MarkdownRenderer from '../../components/MarkdownRenderer'
+import  dynamic  from 'next/dynamic'
+const MarkdownRenderer = dynamic(() => import('../../components/MarkdownRenderer'),{
+  loading:()=><p>Loading</p>
+}) 
 
 const { cache, useCache } = initCache({
   genCacheKeyStrate: (context) => {
@@ -14,7 +17,6 @@ const Detail = ({ readme }) => {
 
   const router = useRouter()
 
-  console.log(router)
   //根据路由缓存
   useCache(genDetailCacheKey(router), {
     readme
