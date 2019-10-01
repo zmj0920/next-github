@@ -55,6 +55,34 @@ npm run dev
 ├── server.js            服务端文件
 ```
 
+安装依赖
+
+```
+    "@zeit/next-css": "^1.0.1", //支持css文件引入配置
+    "antd": "^3.23.1",          // ui库使用
+    "atob": "^2.1.2",           //对base64编码过的字符串进行解码
+    "axios": "^0.19.0",         // 数据请求
+    "babel-plugin-import": "^1.12.1",     //在编译过程中将 import 的写法自动转换为按需引入ui组件
+    "github-markdown-css": "^3.0.1",      //  github-markdown 的样式美化
+    "highlight.js": "^9.15.10",           //使用highlight.js高亮代码
+    "ioredis": "^4.14.0",                 //链接redis使用
+    "koa": "^2.8.1",                      //koa框架
+    "koa-body": "^4.1.1",                 
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.12.3",
+    "lru-cache": "^5.1.1",              //数据缓存
+    "moment": "^2.24.0",                //日期格式化
+    "next": "^9.0.5",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",                //状态管理
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",   //监听redux状态调试工具 
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^2.1.0"             //css 组件
+```
+
+
 
 
 对现有模式的影响

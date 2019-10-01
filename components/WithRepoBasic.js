@@ -5,6 +5,7 @@ import { request } from '../lib/api'
 import initCache from '../lib/client-cache'
 import { genDetailCacheKeyStrate, genDetailCacheKey } from '../lib/util'
 
+//截取 将 query 转化成url参数
 function makeQuery(queryObject) {
     const query = Object.entries(queryObject)
         .reduce((result, entry) => {
