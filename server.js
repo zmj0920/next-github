@@ -16,13 +16,13 @@ const handle = app.getRequestHandler()
 const redisClient = new Redis(
     {
         port: 6379, // Redis port
-        // host: "127.0.0.1", // Redis host
+         host: "47.95.225.57", // Redis host
         // family: 4, // 4 (IPv4) or 6 (IPv6)
-        password: "123456",
+       // password: "123456",
         // db: 0
     }
 )
-const PORT = 3000
+const PORT = 3001
 // 给node全局增加atob方法
 global.atob = atob
 // 等到pages目录编译完成后启动服务响应请求
