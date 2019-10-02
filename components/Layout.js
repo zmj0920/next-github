@@ -100,8 +100,9 @@ function AppLayout({ children, user, router }) {
                 </Container>
             </Content>
             <Footer style={footerStyle}>
-                Develop by   渣渣新 @
-                <a href="http://www.521em.cn">我是渣渣新</a>
+                <a href="https://github.com/zmj0920">github</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="http://www.521em.cn">前端手册</a>
             </Footer>
             <style jsx>{`
             .header-inner{
