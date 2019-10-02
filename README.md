@@ -11,6 +11,8 @@
 
 > API: https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/
 
+> 项目体验地址 ：http://www.taobaods.xin:5000
+
 
 本项目使用Next.js开发 React 服务端渲染，因为当我们要做SEO优化时是一件很麻烦的事情，
 常常需要配置很多繁琐的参数使我们开发增加难度，然而Next.js框架帮助我们解决了很多的配置问题，
