@@ -30,7 +30,7 @@
     "koa-router": "^7.4.0",
     "koa-session": "^5.12.3",
     "lru-cache": "^5.1.1",
-    "markdown-it": "^10.0.0",
+    "markdown-it": "^12.3.2",
     "moment": "^2.24.0",
     "next": "^9.0.5",
     "react": "^16.9.0",
